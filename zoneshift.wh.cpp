@@ -4,7 +4,7 @@
 // @description     Spoof timezone and local time for specific apps (Wallpaper Engine, browsers, games, clients) without altering the Windows system clock.
 // @version         1.0.0
 // @author          Dev-StudioCode
-// @github          https://github.com/Dev-StudioCode/ZoneShift
+// @github          https://github.com/Dev-StudioCode
 // @include         wallpaper32.exe
 // @include         wallpaper64.exe
 // @include         webwallpaper32.exe
@@ -20,7 +20,7 @@
 // @include         Discord.exe
 // @include         Slack.exe
 // @include         Telegram.exe
-// @compilerOptions -ladvapi32
+// @compilerOptions -ladvapi32 -luser32
 // ==/WindhawkMod==
 
 // ==WindhawkModReadme==
@@ -76,9 +76,7 @@ By default, ZoneShift targets Wallpaper Engine, common browsers, and messaging a
 /*
 - targetTimezone: Tokyo Standard Time
   $name: Target Time Zone
-  $description: >-
-    Select the spoofed time zone. Popular presets are provided.
-    Choose "Custom" to enter any Windows or IANA time zone below.
+  $description: Select the spoofed time zone. Popular presets are provided. Choose "Custom" to enter any Windows or IANA time zone below.
   $options:
     - Tokyo Standard Time: "Tokyo, Japan (UTC+09:00)"
     - GMT Standard Time: "London, UK (GMT / BST, UTC+00:00 / UTC+01:00)"
@@ -99,24 +97,16 @@ By default, ZoneShift targets Wallpaper Engine, common browsers, and messaging a
     - Custom: "Custom (Specified below)"
 - customTimezoneKey: ""
   $name: Custom Time Zone Key / Name
-  $description: >-
-    If "Custom" is selected above, enter any Windows Time Zone Key Name
-    (e.g., "Alaskan Standard Time", "Israel Standard Time", "Egypt Standard Time")
-    or an IANA identifier (e.g., "Asia/Tokyo", "Europe/London", "America/New_York").
+  $description: If "Custom" is selected above, enter any Windows Time Zone Key Name (e.g. "Alaskan Standard Time") or an IANA identifier (e.g. "Asia/Tokyo", "Europe/London").
 - timeShiftMinutes: 0
   $name: Custom Time Shift (Minutes)
-  $description: >-
-    Additional time offset in minutes added to local time (positive or negative).
-    0 = normal time for the selected zone. Example: 120 adds 2 hours.
+  $description: Additional time offset in minutes added to local time (positive or negative). 0 = normal time for the selected zone. Example: 120 adds 2 hours.
 - spoofUtcTime: false
   $name: Shift UTC Time (GetSystemTime)
-  $description: >-
-    Applies the custom time shift to GetSystemTime / GetSystemTimeAsFileTime as well.
-    Keep OFF for standard timezone spoofing. Only enable if testing daily resets in apps that strictly check UTC.
+  $description: Applies the custom time shift to GetSystemTime / GetSystemTimeAsFileTime as well. Keep OFF for standard timezone spoofing.
 - debugLogging: false
   $name: Enable Debug Logging
-  $description: >-
-    Output verbose hook messages to the Windhawk Mod Manager log console.
+  $description: Output verbose hook messages to the Windhawk Mod Manager log console.
 */
 // ==/WindhawkModSettings==
 
@@ -693,6 +683,7 @@ static void LoadSettings() {
 
 // Broadcasts setting change to current process top-level windows to refresh Chromium/CEF/UI caches
 static BOOL CALLBACK EnumWindowsNotifyProc(HWND hWnd, LPARAM lParam) {
+    (void)lParam;
     PostMessageW(hWnd, WM_SETTINGCHANGE, 0, (LPARAM)L"intl");
     return TRUE;
 }
@@ -713,7 +704,6 @@ BOOL Wh_ModInit() {
         return FALSE;
     }
 
-    HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
     HMODULE hNtdll = GetModuleHandleW(L"ntdll.dll");
     HMODULE hAdvapi32 = GetModuleHandleW(L"advapi32.dll");
 
