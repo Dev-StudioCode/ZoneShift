@@ -35,9 +35,9 @@ Write-Host "[1/3] Compiling 64-bit Mod DLL (x86_64)..." -ForegroundColor Yellow
 $modSrc = Join-Path $PSScriptRoot "zoneshift.wh.cpp"
 $dll64  = Join-Path $buildDir "zoneshift64.dll"
 & $compiler -shared -std=c++20 -target x86_64-w64-mingw32 `
-    -DUNICODE -D_UNICODE -DWH_MOD `
+    -DUNICODE -D_UNICODE -DWH_MOD '-DWH_MOD_ID=L\"zoneshift\"' `
     -I $include $modSrc -o $dll64 `
-    -L $libDir -L $engine64 -lwindhawk -ladvapi32
+    -L $libDir -L $engine64 -lwindhawk -ladvapi32 -luser32
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  [OK] Successfully built 64-bit DLL: $dll64" -ForegroundColor Green
@@ -49,9 +49,9 @@ if ($LASTEXITCODE -eq 0) {
 Write-Host "[2/3] Compiling 32-bit Mod DLL (i686)..." -ForegroundColor Yellow
 $dll32  = Join-Path $buildDir "zoneshift32.dll"
 & $compiler -shared -std=c++20 -target i686-w64-mingw32 `
-    -DUNICODE -D_UNICODE -DWH_MOD `
+    -DUNICODE -D_UNICODE -DWH_MOD '-DWH_MOD_ID=L\"zoneshift\"' `
     -I $include $modSrc -o $dll32 `
-    -L $libDir -L $engine32 -lwindhawk -ladvapi32
+    -L $libDir -L $engine32 -lwindhawk -ladvapi32 -luser32
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  [OK] Successfully built 32-bit DLL: $dll32" -ForegroundColor Green

@@ -71,15 +71,15 @@ if ($AutoCompile) {
 
         Write-Host "  Compiling x86_64..." -ForegroundColor Gray
         & $compilerBin -shared -std=c++20 -target x86_64-w64-mingw32 `
-            -DUNICODE -D_UNICODE -DWH_MOD `
+            -DUNICODE -D_UNICODE -DWH_MOD '-DWH_MOD_ID=L\"zoneshift\"' `
             -I $includeDir $sourceModPath -o $out64 `
-            -L $libDir -L $engine64 -lwindhawk -ladvapi32
+            -L $libDir -L $engine64 -lwindhawk -ladvapi32 -luser32
 
         Write-Host "  Compiling i686 (32-bit)..." -ForegroundColor Gray
         & $compilerBin -shared -std=c++20 -target i686-w64-mingw32 `
-            -DUNICODE -D_UNICODE -DWH_MOD `
+            -DUNICODE -D_UNICODE -DWH_MOD '-DWH_MOD_ID=L\"zoneshift\"' `
             -I $includeDir $sourceModPath -o $out32 `
-            -L $libDir -L $engine32 -lwindhawk -ladvapi32
+            -L $libDir -L $engine32 -lwindhawk -ladvapi32 -luser32
 
         Write-Host "[SUCCESS] Compiled x64 and x86 binaries into Windhawk Engine!" -ForegroundColor Green
     } else {
