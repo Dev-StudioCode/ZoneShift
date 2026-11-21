@@ -5,6 +5,7 @@
 // @version         1.0.0
 // @author          Dev-StudioCode
 // @github          https://github.com/Dev-StudioCode
+// @homepage        https://github.com/Dev-StudioCode/ZoneShift
 // @include         wallpaper32.exe
 // @include         wallpaper64.exe
 // @include         webwallpaper32.exe
@@ -70,6 +71,13 @@ Windows apps query time through multiple Win32, NT, ICU, CRT, and registry APIs.
 - **`NtQuerySystemInformation` (`SystemTimeOfDayInformation`)**: Low-level NT kernel time-of-day bias.
 - **`RegQueryValueExW`**: Intercepts `TimeZoneKeyName` and `ActiveTimeBias` queries.
 - **Windows ICU Integration**: Automatically converts any IANA identifier (e.g. `Europe/Warsaw`, `America/Mexico_City`, `Asia/Tokyo`) to Windows time zones using `icu.dll`.
+
+---
+
+### Source Code & Support
+
+Source code, issue tracker, and documentation:
+[GitHub Repository](https://github.com/Dev-StudioCode/ZoneShift)
 */
 // ==/WindhawkModReadme==
 
