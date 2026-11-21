@@ -1,9 +1,10 @@
 # ZoneShift - Per-App Timezone Spoofer
 
-[![Windhawk Mod](https://img.shields.io/badge/Windhawk-Mod-0078D7?logo=windows&logoColor=white)](https://windhawk.net/)
-[![Language](https://img.shields.io/badge/Language-C%2B%2B20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011%20(x86%20%2F%20x64)-brightgreen.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Windhawk Marketplace](https://img.shields.io/badge/Windhawk%20Marketplace-PR%20%237545-7952b3?style=flat-square&logo=windows&logoColor=white)](https://github.com/ramensoftware/windhawk-mods/pull/7545)
+[![Windhawk Mod](https://img.shields.io/badge/Windhawk-Mod-0078D7?style=flat-square&logo=windows&logoColor=white)](https://windhawk.net/mods/zoneshift)
+[![Language](https://img.shields.io/badge/Language-C%2B%2B20-blue.svg?style=flat-square)](https://en.wikipedia.org/wiki/C%2B%2B20)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011%20(x86%20%2F%20x64)-brightgreen.svg?style=flat-square)]()
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
 > **Spoof the timezone and local time for individual Windows applications without changing your PC clock or affecting any other running program.**
 
